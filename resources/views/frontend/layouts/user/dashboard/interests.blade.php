@@ -86,25 +86,25 @@
                     <tbody>
 
 
-                    @foreach($interestedPo as $interests)
+                    @foreach($interestedPo as $inter)
 
 
                         <tr>
-                            <td>{{$interests->interestPosts->authorName}} </td>
-                            <td>{{$interests->interestPosts->title}} </td>
-                            <td>{{$interests->remarks}} </td>
-                            <td>{{$interests->created_at}} </td>
+                            <td>{{$inter->interestPosts->authorName}} </td>
+                            <td>{{$inter->interestPosts->title}} </td>
+                            <td>{{$inter->remarks}} </td>
+                            <td>{{$inter->created_at}} </td>
                             <td>@if(!auth('user')->user()->contact) Pleas add you contact
                                 @else {{auth('user')->user()->contact}}
                                 @endif </td>
-                            <td>@if($interests->status=='pending'||$interests->status=='Disapproved')
-                                    You will get Author contact,if approved @else{{$interests->postAuthorContact}}
+                            <td>@if($inter->status=='pending'||$inter->status=='Disapproved')
+                                    You will get Author contact,if approved @else{{$inter->postAuthorContact}}
                                 @endif</td>
                             </td>
-                            <td> {{$interests->status}} </td>
+                            <td> {{$inter->status}} </td>
 
-                            <td> <a class="btn btn-info" style="font-size: 10px; padding: 0 5px"  href="{{route('frontend.view.single.post',$interests->id)}}">View Post</a>
-                                @if($interests->status=='pending')
+                            <td> <a class="btn btn-info" style="font-size: 10px; padding: 0 5px"  href="{{route('frontend.view.single.post',$inter->id)}}">View Post</a>
+                                @if($inter->status=='pending')
                                 @endif
 
                             </td>

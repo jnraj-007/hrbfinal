@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Interest;
+use App\Models\Package;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Userpackage;
@@ -15,10 +16,20 @@ class PostController extends Controller
 {
     public function posts()
     {
+        $categories=Category::all();
         $posts = Post::with('categoryName')->paginate('9');
-        return view('frontend.layouts.posts', compact('posts'));
+        return view('frontend.layouts.posts', compact('posts','categories'));
     }
 
+    //post under category
+
+    public function postsUnderCategory($id)
+    {  $categories=Category::all();
+        $posts=Post::where('categoryId',$id)->paginate('9');
+//        return view('frontend.layouts.post.postUnderCategory',compact('posts','categories'));
+        return view('frontend.layouts.posts', compact('posts','categories'));
+
+    }
 
 
     public function viewSinglePost($id)
@@ -35,6 +46,7 @@ class PostController extends Controller
             return view('frontend.layouts.post.singlePostView', compact('posts','categories'));
         }
     }
+
 //add interest to interest table
     public function interested($id)
     {
@@ -56,13 +68,25 @@ class PostController extends Controller
         return redirect()->back();
     }
 
+//    cancel post interest
+
+    public function cancelInterest($id)
+    {
+
+        $cancel=Userpackage::find($id);
+        $cancel->delete();
+return redirect()->back()->with('success','Package Purchase cancelled.');
+}
+
+
+
     public function interestedPosts()
     {
         $interestedPosts = Interest::with('interestPosts')->
         where('userId', auth('user')->user()->id)->
         orderBy('created_at','DESC')
 //            ->where('status','Disapproved')
-//            ->orWhere('status','pending')
+            ->Where('status','pending')
             ->paginate('3');
 
         $interestedPost=Interest::with('interestPosts')->
@@ -134,14 +158,24 @@ class PostController extends Controller
         }
 
 }
-//user
+//user request delete
     public function deleteRequest($id)
     {
        $deleteRequest= Interest::find($id);
         $deleteRequest->delete();
+
         return redirect()->back()->with('success','Request deleted successfully');
 }
+///user post delete
+    public function deletePost($id)
+    {
+        $deletepost=Post::find($id);
+        $deleteRequest=Interest::where('postId',$id);
+        $deletepost->delete();
+        $deleteRequest->delete();
+        return redirect()->back()->with('success','Post deleted successfully.');
 
+}
   public function viewInterestedUsers()
   {
        $interestedUsers=Interest::with('userinterest','postinterest')->

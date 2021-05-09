@@ -39,7 +39,8 @@ Route::post('/do/user/registration',[FrontendUser::class,'doReg'])->name('fronte
 Route::get('/login/form',[FrontendUser::class,'loginForm'])->name('frontend.login.form');
 Route::post('/login',[FrontendUser::class,'doLogin'])->name('frontend.do.login');
 
-
+//posts under categories
+Route::get('/posts/under_categories/{id}',[FrontendPostController::class,'postsUnderCategory'])->name('posts.under.category');
 
 //Request the posts interested
 Route::group(['middleware'=>'interest'],function (){
@@ -61,8 +62,10 @@ Route::get('/approve/request/{id}/{action}',[FrontendPostController::class,'appr
 // delete user request
 Route::get('/delete/request/{id}',[FrontendPostController::class,'deleteRequest'])->name('delete.request');
 
-
-
+//delete user post
+Route::get('/delete/user/post/{id}',[FrontendPostController::class,'deletePost'])->name('front.delete.user.post');
+//cacel interest in a post
+Route::get('/cancel/interest/{id}',[FrontendPostController::class,'cancelInterest'])->name('cancel.post.interest');
 //user form profile
 Route::get('/user/profile',[FrontendUser::class,'userProfile'])->name('frontend.user.profile');
 //user create post

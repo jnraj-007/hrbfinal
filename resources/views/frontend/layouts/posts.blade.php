@@ -4,10 +4,22 @@
 @section('page')
 
     {{--search bar end--}}
-<section class="ftco-section bg-light">
-    <div class="container">
-        <div class="row">
+    <section class="ftco-section bg-light">
 
+
+        <div class="container">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Category
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach($categories as $cats)
+                    <a class="dropdown-item" style="background: darkgrey;" href="{{route('posts.under.category',$cats->id)}}">{{$cats->title}}</a>
+                    @endforeach
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
             @foreach($posts as $data)
             <div class="col-md-4 ftco-animate">
                     <div class="properties">
@@ -52,8 +64,11 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
+
+
 </section>
+
 
 
 @endsection

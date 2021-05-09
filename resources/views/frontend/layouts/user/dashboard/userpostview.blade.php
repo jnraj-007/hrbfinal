@@ -1,18 +1,7 @@
 @extends('frontend.layouts.user.dashboard.userDashboardMaster')
 @section('dashboard')
 
-
-
-
-
-
-
-
-
-
-
-
-    <section class="table table-hover table-striped table-condensed tasks-table ">
+    <section class=" ">
         <div class="container">
             <div class="row">
 
@@ -26,7 +15,7 @@
                             {{ session()->get('success') }}
                         </div>@endif</h>
 
-                <table  class="table table-hover  ">
+                <table  class="table table-hover table-striped  tasks-table  ">
                     <thead>
                     <th>Post Title</th>
                     <th>Post Image</th>
@@ -46,7 +35,7 @@
                         <tr>
 
                             <td>{{$data->title}} </td>
-                            <td>{{$data->image}} </td>
+                            <td ><img width="100px"  src="{{url('/image/posts/',$data->image)}}" alt=""> </td>
                             <td>{{$data->rentAmount}} </td>
                             <td >{{$data->region}}</td>
                             <td>{{$data->created_at}}</td>
@@ -55,7 +44,7 @@
 
                             <td> <a style="font-size: 10px; padding: 0 5px" class="btn btn-info" href="{{route('frontend.view.single.post',$data->id)}}">View Post</a>
                                 @if($data->status=='Active')
-                                    <a class="btn btn-danger" style="font-size: 10px; padding: 0 5px"  href="{{route('delete.request',$data->id)}}">Delete</a>
+                                    <a class="btn btn-danger" style="font-size: 10px; padding: 0 5px"  href="{{route('front.delete.user.post',$data->id)}}">Delete</a>
 
                                 @endif
 

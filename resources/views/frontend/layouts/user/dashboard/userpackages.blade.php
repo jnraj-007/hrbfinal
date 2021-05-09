@@ -2,14 +2,15 @@
 @section('dashboard')
     <div class="row">
 
+         <h3 class="bg-info">Your Purchased Packages:</h3>
+        <br>
+        <br>
+
         @if(session()->has('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
             </div>
         @endif
-         <h3 class="bg-info">Your Purchased Packages:</h3>
-        <br>
-        <br>
         <table class="table  table-bordered table-hover  ">
             <thead>
 
@@ -35,7 +36,7 @@
                     <td>
                         @if($data->status=='Approved'||$data->current_package_status=='expired')
                             <p style="background-color: red; display: inline-block">no action</p>@else
-                        <a class="btn btn-info" href="#">Cancel</a>
+                        <a class="btn btn-info" href="{{route('cancel.post.interest',$data->id)}}">Cancel</a>
                             @endif
                     </td>
                 </tr>

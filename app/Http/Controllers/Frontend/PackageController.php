@@ -11,7 +11,7 @@ class PackageController extends Controller
 {
     public function viewPackages()
     {
-        $userpurchase=Userpackage::where('userId',auth('user')->user()->id)->get();
+        $userpurchase=Userpackage::where('userId',auth('user')->user()->id)->orderBy('created_at','DESC')->where('status','pending')->orWhere('status','Approved')->get();
 
         $packages=Package::all();
         return view('frontend.layouts.user.dashboard.userpackages',compact('packages','userpurchase'));
