@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Userpackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+
 
 class UserController extends Controller
 {
@@ -82,4 +84,58 @@ class UserController extends Controller
     {
         return view('frontend.layouts.user.dashboard.profileupdate');
     }
+
+    public function updateUser(Request $request)
+    {
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required|min:6'
+        ]);
+        $user_auth=$request->only('email','password');
+        if (Auth::guard('user')->attempt($user_auth)){
+
+            $request->validate([
+                'name' => 'required',
+                'address' => 'required',
+                'contact' => 'required|min:11|numeric',
+                'role' => 'required',
+                'newPassword' => 'required',
+                'photo' => 'required'
+            ]);
+            $image = "";
+
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                if ($file->isValid()) {
+
+                    $image = date('Ymdhms') . '.' . $file->getClientOriginalExtension();
+                    $file->storeAs('users', $image);
+
+
+                }
+            }
+            $updateUser = User::where('id', auth('user')->user()->id)->update([
+
+                'name' => $request->name,
+                'address' => $request->address,
+                'contact' => $request->contact,
+                'role' => $request->role,
+                'password' => bcrypt($request->newPassword),
+                'image' => $image
+
+            ]);
+
+
+            return redirect()->route('frontend.user.profile')->with('success', 'Profile updated Successfully');
+        }
+
+else{    return redirect()->back()->with('success', 'Password Not Matched.');
+
+     }
+}
+
+
+
+
+
 }

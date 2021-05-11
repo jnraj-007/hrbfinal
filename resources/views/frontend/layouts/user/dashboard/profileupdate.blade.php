@@ -5,8 +5,9 @@
 
                     <div class="card card-5  bg-blue-gradient">
                         <div class="card-body ">
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="{{route('user.profile.update')}}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
 
                                 @if ($errors->any())
                                     @foreach ($errors->all() as $error)
@@ -18,6 +19,7 @@
                                     <div class="value">
                                         <div class="input-group">
                                             <input class="input--style-5" placeholder="{{auth('user')->user()->name}}" required type="text" name="name">
+                                            <input class="input--style-5" hidden required type="email" value="{{auth('user')->user()->email}}"  name="email">
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +61,11 @@
                                     <div class="name"style="color: white">Old Password</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" required type="passwordold" name="password">
+                                            @if(session()->has('success'))
+                                                <div class="alert alert-danger">
+                                                    {{ session()->get('success') }}
+                                                </div>@endif
+                                            <input class="input--style-5" required type="password" name="password">
                                         </div>
                                     </div>
                                 </div>
@@ -67,9 +73,9 @@
                                     <div class="name"style="color: white">New Password</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" required type="password" name="password">
+                                            <input class="input--style-5" required type="password" name="newPassword">
                                         </div>
-                                    </div>
+                                    </div>d
                                 </div>
                                 <div class="form-row">
                                     <div class="name"style="color: white; ">Role</div>

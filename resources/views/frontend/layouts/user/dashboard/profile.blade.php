@@ -5,7 +5,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>Page Title</title>
+    <title>PROFILE</title>
 
 
 
@@ -20,6 +20,10 @@
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container" style="background:ghostwhite">
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>@endif
     <div class="row">
         <div class="profile-nav col-md-3">
             <div class="panel">
@@ -43,16 +47,20 @@
                     <h1>Bio Graph</h1>
                     <div class="row">
                         <div class="bio-row">
-                            <p><span> Name </span>: {{auth('user')->user()->name}}</p>
+                            <p><span> Name: </span>: {{auth('user')->user()->name}}</p>
+                        </div>
+
+                        <div class="bio-row">
+                            <p><span> Email: </span>: {{auth('user')->user()->email}}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>Role </span>: {{auth('user')->user()->role}}</p>
+                            <p><span>Role: </span>: {{auth('user')->user()->role}}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span>Address</span>:@if(auth('user')->user()->address!=null) {{auth('user')->user()->address}}@else N/A @endif </p>
+                            <p><span>Address:</span>:@if(auth('user')->user()->address!=null) {{auth('user')->user()->address}}@else N/A @endif </p>
                         </div>
                         <div class="bio-row">
-                            <p><span>Contact</span>: @if(auth('user')->user()->contact!=null) {{auth('user')->user()->contact}}@else N/A @endif</p>
+                            <p><span>Contact:</span>: @if(auth('user')->user()->contact!=null) {{auth('user')->user()->contact}}@else N/A @endif</p>
                         </div>
                     </div>
                 </div>

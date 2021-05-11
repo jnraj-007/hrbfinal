@@ -70,6 +70,8 @@ Route::get('/cancel/interest/{id}',[FrontendPostController::class,'cancelInteres
 //user form profile
 Route::get('/user/profile',[FrontendUser::class,'userProfile'])->name('frontend.user.profile');
 Route::get('/user/edit/profile',[FrontendUser::class,'editProfileForm'])->name('user.edit.profile.form');
+Route::put('/update/profile',[FrontendUser::class,'updateUser'])->name('user.profile.update');
+
 
 //user create post
 Route::get('/user/post/form',[FrontendPostController::class,'userPostForm'])->name('user.post.form');
