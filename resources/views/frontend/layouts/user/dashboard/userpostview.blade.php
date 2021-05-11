@@ -55,7 +55,7 @@
                     </tbody>
 
                 </table>
-{{--                {{$interestedPosts->links()}}--}}
+                {{$posts->links()}}
 
             </div>
         </div>

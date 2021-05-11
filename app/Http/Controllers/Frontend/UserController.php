@@ -75,7 +75,11 @@ class UserController extends Controller
 
     public function userProfile()
     {
-        return view('frontend.layouts.user.dashboard.profileupdate');
+        return view('frontend.layouts.user.dashboard.profile');
     }
 
+    public function userProfileUpdata()
+    {
+
+    }
 }

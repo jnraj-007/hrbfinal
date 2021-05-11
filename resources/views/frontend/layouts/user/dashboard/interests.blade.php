@@ -18,7 +18,7 @@
                             {{ session()->get('success') }}
                         </div>@endif</h>
 
-                <table  class="table table-hover table-striped table-condensed tasks-table table-bordered table-responsive">
+                <table  class="table  table-bordered table-hover">
                     <thead>
 
                     <th>Author Name</th>

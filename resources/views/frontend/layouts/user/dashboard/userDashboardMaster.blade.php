@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/master/css/icomoon.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/master/css/style.css">
 
-{{--    userprofile form css start--}}
+{{--    userprofile1 form css start--}}
 
     <link href="{{asset('backend')}}/adduser/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="{{asset('backend')}}/adduser/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -49,7 +49,7 @@
 
     <!-- Main CSS-->
     <link href="{{asset('backend')}}/adduser/css/main.css" rel="stylesheet" media="all">
-{{--    userprofile form css end--}}
+{{--    userprofile1 form css end--}}
 
 
 </head>
@@ -201,6 +201,7 @@
                         <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('interested.posts')}}">
                         <span class="menu-title">Interested Posts</span>

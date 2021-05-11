@@ -56,7 +56,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <input class="form-control" required name="sectorNo" type="text" placeholder="enter sector">
+                            <input class="form-control" required name="sectorNo" type="number" placeholder="enter sector">
                         </div>
                         <div class="col-md-3">
                             <input type="text" placeholder="Road No" required name="roadNo" class="form-control">
@@ -91,6 +91,29 @@
 
                         <textarea class="form-control" required placeholder="enter the details of your flat" name="description" id="" ></textarea>
 
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="line"></div>
+            <div class="form-group row input-group-prepend">
+                <label class="col-sm-3 form-control-label">Location</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input class="form-control" required name="latitude" type="text" placeholder="latitude">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" placeholder="longitude" required name="longitude" class="form-control">
+                        </div>
+
+                        {{--                        <div class="col-md-4">--}}
+                        {{--                            <input type="text" placeholder=".col-md-4" class="form-control">--}}
+                        {{--                        </div>--}}
+                        {{--                        <div class="col-md-5">--}}
+                        {{--                            <input type="text" placeholder=".col-md-5" class="form-control">--}}
+                        {{--                        </div>--}}
                     </div>
                 </div>
             </div>

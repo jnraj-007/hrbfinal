@@ -220,6 +220,7 @@ return redirect()->back()->with('success','Package Purchase cancelled.');
            else{
 
 
+
               // now()->format('Y-m-d') > $data->expire_at
            $image = "";
 
@@ -247,7 +248,9 @@ return redirect()->back()->with('success','Package Purchase cancelled.');
                'authorName' => auth('user')->user()->name,
                'authorRole' => auth('user')->user()->role,
                'packageId' => $package_count->id,
-               'expire_at'=>now()->addMonth()
+               'expire_at'=>now()->addMonth(),
+               'latitude'=>$request->latitude,
+               'longitude'=>$request->longitude
            ]);
 
            $package_count->decrement('numberOfPosts');
