@@ -47,6 +47,7 @@ Route::group(['middleware'=>'interest'],function (){
 
     Route::get('/post/interested/{id}',[FrontendPostController::class,'interested'])->name('post.interested');
 });
+
 //user dashboard interested posts
 Route::get('/interested/posts',[FrontendPostController::class,'interestedPosts'])->name('interested.posts');
 
@@ -68,6 +69,8 @@ Route::get('/delete/user/post/{id}',[FrontendPostController::class,'deletePost']
 Route::get('/cancel/interest/{id}',[FrontendPostController::class,'cancelInterest'])->name('cancel.post.interest');
 //user form profile
 Route::get('/user/profile',[FrontendUser::class,'userProfile'])->name('frontend.user.profile');
+Route::get('/user/edit/profile',[FrontendUser::class,'editProfileForm'])->name('user.edit.profile.form');
+
 //user create post
 Route::get('/user/post/form',[FrontendPostController::class,'userPostForm'])->name('user.post.form');
 
@@ -81,6 +84,7 @@ Route::post('purchase/package',[FrontendPackageController::class,'packagePurchas
 Route::post('/user/do/post',[FrontendPostController::class,'userAddPost'])->name('user.create.post');
 //user post view
 Route::get('/user/posts/view',[FrontendPostController::class,'userPostView'])->name('user.posts.view');
+
 
 
 ///ADMIN

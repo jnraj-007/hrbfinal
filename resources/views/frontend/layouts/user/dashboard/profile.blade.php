@@ -27,12 +27,12 @@
                     <a href="#">
                         <img @if(auth('user')->user()->image!=null) src="{{url('image/users/',auth('user')->user()->image)}}"@else src="https://bootdey.com/img/Content/avatar/avatar3.png" @endif alt="">
                     </a>
-                    <h1>Camila Smith</h1>
-                    <p>deydey@theEmail.com</p>
+                    <h1>{{auth('user')->user()->name}}</h1>
+                    <p>{{auth('user')->user()->role}}</p>
                 </div>
 
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"> <i class="fa fa-edit"></i>Edit profile</a></li>
+                    <li><a href="{{route('user.edit.profile.form')}}"> <i class="fa fa-edit"></i>Edit profile</a></li>
                 </ul>
             </div>
         </div>
