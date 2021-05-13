@@ -224,6 +224,23 @@ class PostController extends Controller
                return redirect()->back()->with('success','You do not have any posts left to do. Please purchase a package');
            }
            else{
+               $request->validate([
+                   'post_title'=>'required',
+                   'catId'=>'required',
+                   'price'=>'required',
+                   'bed'=>'required',
+                   'bathroom'=>"required",
+                   'area'=>"required",
+                   'unit'=>"required",
+                   'region'=>"required",
+                   'sectorNo'=>"required",
+                   'roadNo'=>"required",
+                   'houseNo'=>"required",
+                   'postimage'=>"required",
+                   'description'=>"required",
+                   'latitude'=>"required",
+                   'longitude'=>"required"
+                   ]);
 
 
 
@@ -256,7 +273,11 @@ class PostController extends Controller
                'packageId' => $package_count->id,
                'expire_at'=>now()->addMonth(),
                'latitude'=>$request->latitude,
-               'longitude'=>$request->longitude
+               'longitude'=>$request->longitude,
+               'bedroom'=>$request->bed,
+               'bathroom'=>$request->bathroom,
+               'area'=>$request->area,
+               'unit'=>$request->unit
            ]);
 
            $package_count->decrement('numberOfPosts');

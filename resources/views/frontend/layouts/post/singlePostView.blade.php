@@ -24,11 +24,11 @@
                             <div><h1 style="font-size:1.25rem">Details:</h1></div>
                             <div class="d-md-flex mt-5 mb-5">
                                 <ul>
-                                    <li><span>Bed Rooms: </span> 4</li>
-                                    <li><span>Bath Rooms: </span> 4</li>
+                                    <li><span>Bed Rooms: </span> {{$posts->bedroom}}</li>
+                                    <li><span>Bath Rooms: </span> {{$posts->bathroom}}</li>
                                 </ul>
                                 <ul class="ml-md-5">
-                                    <li><span>Floor Area: </span> 1,300 SQ FT</li>
+                                    <li><span>Floor Area: </span> {{$posts->area}} {{$posts->unit}}</li>
 
                                 </ul>
                             </div>

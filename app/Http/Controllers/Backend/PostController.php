@@ -27,6 +27,8 @@ public function addpost(Request $request){
 
 if ($request->hasFile('postimage'))
 {
+
+
     $file=$request->file('postimage');
     if ($file->isValid()){
 
