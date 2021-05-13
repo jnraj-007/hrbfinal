@@ -12,6 +12,13 @@
     <ul class="list-unstyled">
         <li class=""><a href="{{route('home')}}"> <i class="icon-home"></i>Home </a></li>
         <li><a href="{{route('category.view')}}"> <i class="icon-grid"></i>categories </a></li>
+        <li><a href="#exampledropdownDropdow" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Purchase </a>
+            <ul id="exampledropdownDropdow" class="collapse list-unstyled ">
+                <li><a href="{{route('purchase.request.list')}}">Purchase Request</a></li>
+                <li><a href="#">Purchase History</a></li>
+                <li><a href="#">Purchase Disapproved</a></li>
+            </ul>
+        </li>
         <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>posts </a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                 <li><a href="{{route('post.view')}}">view post</a></li>

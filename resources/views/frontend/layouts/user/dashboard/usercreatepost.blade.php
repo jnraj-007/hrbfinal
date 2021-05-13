@@ -64,12 +64,32 @@
                         <div class="col-md-3">
                             <input type="text" placeholder="House No" required name="houseNo" class="form-control">
                         </div>
-                        {{--                        <div class="col-md-4">--}}
-                        {{--                            <input type="text" placeholder=".col-md-4" class="form-control">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div class="col-md-5">--}}
-                        {{--                            <input type="text" placeholder=".col-md-5" class="form-control">--}}
-                        {{--                        </div>--}}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="line"></div>
+            <div class="form-group row input-group-prepend">
+                <label class="col-sm-3 form-control-label">Address</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-md-3 from-group">
+                            <select name="region" id="" required class="form-control table-hover">
+                                <option value="" selected>Region</option>
+                                <option value="Uttara">Uttara</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" required name="sectorNo" type="number" placeholder="enter sector">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" placeholder="Road No" required name="roadNo" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" placeholder="House No" required name="houseNo" class="form-control">
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -132,6 +132,11 @@ Route::group(['prefix'=>'admin'],function (){
         Route::post('/post/add',[PostController::class,'addpost'])->name('post.add');
         Route::get('/post/delete/{id}',[PostController::class,'postdelete'])->name('post.delete');
 
+// purchase request
+        Route::get('/view/purchase/requests',[PackageController::class,'purchaseRequest'])->name('purchase.request.list');
+        Route::get('/approve/request/{request_id}{name}',[PackageController::class,'approveRequest'])->name('approve.purchase.request');
+//        Route::get('/disapprove/request/{id}{',)
+
 
 
 

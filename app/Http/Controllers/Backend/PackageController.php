@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
+use App\Models\Userpackage;
 use Illuminate\Http\Request;
 use App\Models\Package;
 
@@ -31,5 +33,36 @@ class PackageController extends Controller
         $delete->delete();
         return redirect()->route('package.view');
     }
+
+    public function purchaseRequest()
+    {    $title="Purchase Request";
+        $purchaseRequest=Userpackage::with('userdata')->where('status','pending')->get();
+        return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title'));
+    }
+
+    public function approveRequest($id,$username)
+    {
+        $approve=Userpackage::find($id);
+        $approve->update([
+            'status'=>'Approved',
+            'current_package_status'=>'active'
+
+        ]);
+        $paymenthistory=Userpackage::find($id);
+        Payment::create([
+
+            'userId'=>$paymenthistory->userId,
+            'userName'=>$username,
+            'packageId'=>$paymenthistory->package_id,
+            'packageName'=>$paymenthistory->packageName,
+            'approvedBy'=>auth('admin')->user()->name,
+            'purchaseId'=>$paymenthistory->id,
+            'amount'=>$paymenthistory->amountToPay,
+            'paymentDate'=>$paymenthistory->created_at
+        ]);
+        return redirect()->back()->with('success','Request Approved');
+
+}
+
 
 }

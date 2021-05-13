@@ -68,14 +68,20 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-//    cancel post interest
+//    cancel purchase reqeust
 
     public function cancelInterest($id)
     {
 
         $cancel=Userpackage::find($id);
-        $cancel->delete();
-return redirect()->back()->with('success','Package Purchase cancelled.');
+        if ($cancel->status=='Approved'){
+            return redirect()->back()->with('success','Request has Already been Approved');
+        }else{
+
+
+            $cancel->delete();
+            return redirect()->back()->with('success','Package Purchase cancelled .');
+        }
 }
 
 
