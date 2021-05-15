@@ -22,9 +22,11 @@
 
 
                 @foreach($posts as $data)
+
                     <div class="col-md-4 ftco-animate">
                         <div class="properties">
-                            <a href="{{route('frontend.view.single.post',$data->id)}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image: url(image/posts/{{$data->image}});">
+
+                            <a href="{{route('frontend.view.single.post',$data->id)}}" class="img img-2 d-flex justify-content-center align-items-center" style="background-image:url('{{asset('image')}}/posts/{{$data->image}}');">
                                 <div class="icon d-flex justify-content-center align-items-center">
                                     <span class="icon-search2"></span>
                                 </div>

@@ -26,6 +26,7 @@ class PostController extends Controller
     public function postsUnderCategory($id)
     {  $categories=Category::all();
         $posts=Post::where('categoryId',$id)->paginate('9');
+//        dd($posts);
 //        return view('frontend.layouts.post.postUnderCategory',compact('posts','categories'));
         return view('frontend.layouts.posts', compact('posts','categories'));
 
