@@ -9,12 +9,48 @@ use Illuminate\Http\Request;
 
 class PackageController extends Controller
 {
+
+//    show approved post
     public function viewPackages()
     {
-        $userpurchase=Userpackage::where('userId',auth('user')->user()->id)->orderBy('created_at','DESC')->where('status','pending')->orWhere('status','Approved')->get();
+
+        $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Approved')->orderBy('created_at','DESC')->paginate(3);
 
         $packages=Package::all();
-        return view('frontend.layouts.user.dashboard.userpackages',compact('packages','userpurchase'));
+        return view('frontend.layouts.user.dashboard.userpackages',compact('packages','user'));
+    }
+
+//    show pending post
+
+    public function pendingPackage($id)
+    {
+        switch ($id){
+            case 'pending':
+
+        $packageStatus="Pending Packages";
+        $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','pending')->orderBy('created_at','DESC')->paginate('6');
+        return view('frontend.layouts.user.dashboard.purchaseHistory',compact('user','packageStatus'));
+        break;
+            case 'Disapproved':
+                $packageStatus="Disapproved Purchase";
+                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Disapproved')->orderBy('created_at','DESC')->paginate('6');
+                return view('frontend.layouts.user.dashboard.purchaseHistory',compact('user','packageStatus'));
+                break;
+            case 'history':
+                $packageStatus="Purchase History";
+                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','expired')->orderBy('created_at','DESC')->paginate('6');
+                return view('frontend.layouts.user.dashboard.purchaseHistory',compact('user','packageStatus'));
+                break;
+            case 'Approved':
+                $packageStatus="Approved Purchase";
+                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Approved')->orderBy('created_at','DESC')->paginate('6');
+                return view('frontend.layouts.user.dashboard.purchaseHistory',compact('user','packageStatus'));
+                break;
+
+            default: return redirect()->back();
+                break;
+
+        }
     }
 
     public function purchaseForm($id)

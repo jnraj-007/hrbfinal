@@ -87,25 +87,39 @@
                         <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
                     </a>
                 </li>
+{{--                <li class="nav-item dropdown">--}}
+{{--                    <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">--}}
+{{--                        <i class="mdi mdi-email-outline"></i>--}}
+{{--                        <span class="count-symbol bg-warning"></span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+                @php
+
+                    $interestPost =\App\Models\Interest::with('userinterest','interestPosts')->where('postAuthorId',auth('user')->user()->id)->
+                    where('status','pending')->paginate('5');
+
+                @endphp
+                @php $purchase=\App\Models\Userpackage::where('userId',auth('user')->user()->id)->where('status','Approved')->orWhere('status','Disapproved')->orderBy('created_at','DESC')->paginate(2);
+                @endphp
+
+
+@if(count($interestPost)==null&&count($purchase)==null)
                 <li class="nav-item dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                        <i class="mdi mdi-email-outline"></i>
-                        <span class="count-symbol bg-warning"></span>
+                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                        <i class="mdi mdi-bell-outline"></i>
                     </a>
-                </li>
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                        <h6 class="p-3 mb-0"> No Notifications</h6></div></li>
+                @else
+
+
                 <li class="nav-item dropdown">
                     <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                         <i class="mdi mdi-bell-outline"></i>
                         <span class="count-symbol bg-danger"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                        <h6 class="p-3 mb-0"> No Notifications</h6>
-                        @php
 
-                            $interestPost =\App\Models\Interest::with('userinterest','interestPosts')->where('postAuthorId',auth('user')->user()->id)->
-                            where('status','pending')->paginate('5');
-
-                        @endphp
                         @if($interestPost)
                         @foreach($interestPost as $interest)
 
@@ -125,8 +139,7 @@
                         @endforeach
                         @endif
 
-@php $purchase=\App\Models\Userpackage::where('userId',auth('user')->user()->id)->where('status','Approved')->orWhere('status','Disapproved')->orderBy('created_at','DESC')->paginate(2);
-@endphp
+
                          @if($purchase)
                             @foreach($purchase as $pur)
                             <div class="dropdown-divider"></div>
@@ -139,17 +152,20 @@
                                 </div>
                                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                                     <h6 class="preview-subject font-weight-normal mb-1"></h6>
-                                    <p class="text-gray ellipsis mb-0">your request for package  {{ $pur->packageName}} Purchase has  {{$pur->status}} </p>
+                                    <p class="text-gray ellipsis mb-0">your request for {{ $pur->packageName}} Purchase has  {{$pur->status}} </p>
                                 </div>
                             </a>
                             @endforeach
                         @endif
 
-
-
-{{--                        <div class="dropdown-divider"></div>--}}
                     </div>
                 </li>
+@endif
+
+
+
+
+
                 <li class="nav-item nav-logout d-none d-lg-block">
                     <a class="nav-link" href="{{route('home.view')}}">
                         <i class="mdi mdi-power"></i>

@@ -51,7 +51,7 @@
                                             </div>
                                             <div class="col-9">
                                                 <div class="input-group-desc">
-                                                    <input class="input--style-5" placeholder="{{auth('user')->user()->contact}}" required type="text" name="contact">
+                                                    <input class="input--style-5" placeholder="{{auth('user')->user()->contact}}" required type="number" name="contact">
                                                 </div>
                                             </div>
                                         </div>

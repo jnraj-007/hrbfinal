@@ -1,12 +1,7 @@
 @extends('welcome')
 @section('page')
 
-    <center> <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-            Create Packages
-        </button></center>
-    <br>
-    <br>
-    <br>
+
 
     <table class="table  table-bordered table-hover  ">
         <thead>

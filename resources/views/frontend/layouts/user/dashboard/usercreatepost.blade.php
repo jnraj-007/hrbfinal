@@ -8,6 +8,7 @@
     @endif
     <div class="block-body">
 {{--        @dd($isExist)--}}
+
         @if($isExist)
             <h1>For posting you have to purchase a <strong>Package</strong></h1>
         @else

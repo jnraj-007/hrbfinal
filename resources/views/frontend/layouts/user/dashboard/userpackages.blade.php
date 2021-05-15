@@ -1,10 +1,22 @@
 @extends('frontend.layouts.user.dashboard.userDashboardMaster')
 @section('dashboard')
-    <div class="row">
 
-         <h3 class="bg-info">Your Purchased Packages:</h3>
+    <div class="row" style="display: inline-block;">
+
+
+        <a href="{{route('user.package.pending','Approved')}}" style=" margin-left: 20px" class="btn btn-success">Approved Package</a>
+        <a href="{{route('user.package.pending','pending')}}" style=" margin-left: 20px" class="btn btn--blue">Pending Package</a>
+            <a href="{{route('user.package.pending','Disapproved')}}" style=" margin-left: 20px" class="btn btn-danger">Disapproved Packages</a>
+            <a href="{{route('user.package.pending','history')}}" style=" margin-left: 20px" class="btn btn-info">Purchase History</a>
+
+        </div>
+        <div class="row">
+        <h3 style="padding: 2px; background-color: Green;box-sizing: border-box;margin-bottom:20px;margin-top: 20px">Your Active Packages:</h3>
         <br>
         <br>
+        <br>
+
+
 
         @if(session()->has('success'))
             <div class="alert alert-success">
@@ -24,7 +36,7 @@
             <th>Action</th>
             </thead>
             <tbody>
-             @foreach($userpurchase as $data)
+             @foreach($user as $data)
                 <tr>
                     <td> {{$data->packageName}}</td>
                     <td> {{$data->numberOfPosts}}</td>

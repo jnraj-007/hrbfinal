@@ -206,7 +206,7 @@ class PostController extends Controller
         $checkPackage = Userpackage::where('userId', auth('user')->user()->id)->where('status', 'Approved')->get();
 
         $category = Category::all();
-        $isExist = !auth('user')->user()->userpackages()->where('current_package_status', 'active')->exists();
+        $isExist = !(auth('user')->user()->userpackages()->where('current_package_status', 'active')->exists());
 
 
         return view('frontend.layouts.user.dashboard.usercreatepost', compact('category', 'isExist'));
@@ -214,9 +214,7 @@ class PostController extends Controller
 
     public function userAddPost(Request $request)
     {
-           $package_count = auth('user')->user()->userpackages()->
-           where('current_package_status', 'active')->
-           where('numberOfPosts','>',0)->first();
+           $package_count = auth('user')->user()->userpackages()->where('current_package_status', 'active')->orWhere('status','Approved')->where('numberOfPosts','>',0)->first();
 
 
            if ($package_count == null) {

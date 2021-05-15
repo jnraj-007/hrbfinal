@@ -46,46 +46,51 @@ Route::get('/posts/under_categories/{id}',[FrontendPostController::class,'postsU
 Route::group(['middleware'=>'interest'],function (){
 
     Route::get('/post/interested/{id}',[FrontendPostController::class,'interested'])->name('post.interested');
-});
-
-//user dashboard interested posts
-Route::get('/interested/posts',[FrontendPostController::class,'interestedPosts'])->name('interested.posts');
+    //user dashboard interested posts
+    Route::get('/interested/posts',[FrontendPostController::class,'interestedPosts'])->name('interested.posts');
 
 //view users interested in my posts
-Route::get('/interested/users',[FrontendPostController::class,'viewInterestedUsers'])->name('view.interested.users');
+    Route::get('/interested/users',[FrontendPostController::class,'viewInterestedUsers'])->name('view.interested.users');
 
 //view approved user list
-Route::get('view/interested/list',[FrontendPostController::class,'viewApprovedUsers'])->name('view.approved.user');
+    Route::get('view/interested/list',[FrontendPostController::class,'viewApprovedUsers'])->name('view.approved.user');
 
 //approve and disapprove the request
-Route::get('/approve/request/{id}/{action}',[FrontendPostController::class,'approve'])->name('approve.request');
+    Route::get('/approve/request/{id}/{action}',[FrontendPostController::class,'approve'])->name('approve.request');
 
 // delete user request
-Route::get('/delete/request/{id}',[FrontendPostController::class,'deleteRequest'])->name('delete.request');
+    Route::get('/delete/request/{id}',[FrontendPostController::class,'deleteRequest'])->name('delete.request');
 
 //delete user post
-Route::get('/delete/user/post/{id}',[FrontendPostController::class,'deletePost'])->name('front.delete.user.post');
+    Route::get('/delete/user/post/{id}',[FrontendPostController::class,'deletePost'])->name('front.delete.user.post');
 //cacel interest in a post
-Route::get('/cancel/interest/{id}',[FrontendPostController::class,'cancelInterest'])->name('cancel.post.interest');
+    Route::get('/cancel/interest/{id}',[FrontendPostController::class,'cancelInterest'])->name('cancel.post.interest');
 //user form profile
-Route::get('/user/profile',[FrontendUser::class,'userProfile'])->name('frontend.user.profile');
-Route::get('/user/edit/profile',[FrontendUser::class,'editProfileForm'])->name('user.edit.profile.form');
-Route::put('/update/profile',[FrontendUser::class,'updateUser'])->name('user.profile.update');
+    Route::get('/user/profile',[FrontendUser::class,'userProfile'])->name('frontend.user.profile');
+    Route::get('/user/edit/profile',[FrontendUser::class,'editProfileForm'])->name('user.edit.profile.form');
+    Route::put('/update/profile',[FrontendUser::class,'updateUser'])->name('user.profile.update');
 
-
-//user create post
-Route::get('/user/post/form',[FrontendPostController::class,'userPostForm'])->name('user.post.form');
+    //user create post
+    Route::get('/user/post/form',[FrontendPostController::class,'userPostForm'])->name('user.post.form');
 
 //user package view
-Route::get('/packages',[FrontendPackageController::class,'viewPackages'])->name('user.package.view');
+    Route::get('/packages',[FrontendPackageController::class,'viewPackages'])->name('user.package.view');
+    Route::get('/packages/pending/{id}',[FrontendPackageController::class,'pendingPackage'])->name('user.package.pending');
+
 //user package purchase form
-Route::get('/package/purchase/form/{id}',[FrontendPackageController::class,'purchaseForm'])->name('purchase.form');
-Route::post('purchase/package',[FrontendPackageController::class,'packagePurchase'])->name('package.purchase');
+    Route::get('/package/purchase/form/{id}',[FrontendPackageController::class,'purchaseForm'])->name('purchase.form');
+    Route::post('purchase/package',[FrontendPackageController::class,'packagePurchase'])->name('package.purchase');
 
 //user post add
-Route::post('/user/do/post',[FrontendPostController::class,'userAddPost'])->name('user.create.post');
+    Route::post('/user/do/post',[FrontendPostController::class,'userAddPost'])->name('user.create.post');
 //user post view
-Route::get('/user/posts/view',[FrontendPostController::class,'userPostView'])->name('user.posts.view');
+    Route::get('/user/posts/view',[FrontendPostController::class,'userPostView'])->name('user.posts.view');
+
+});
+
+
+
+
 
 
 
