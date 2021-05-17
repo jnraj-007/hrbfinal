@@ -36,7 +36,7 @@ class PackageController extends Controller
 
     public function purchaseRequest()
     {    $title="Purchase Request";
-        $purchaseRequest=Userpackage::with('userdata')->where('status','pending')->get();
+        $purchaseRequest=Userpackage::with('userdata')->where('status','pending')->paginate(10);
         return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title'));
     }
 
@@ -63,6 +63,33 @@ class PackageController extends Controller
         return redirect()->back()->with('success','Request Approved');
 
 }
+
+    public function disapproveRequest($id)
+    {
+
+       $disapprove= Userpackage::find($id);
+       $disapprove->update([
+           'status'=>'Disapproved'
+       ]);
+       return redirect()->back()->with('success','Request has been Disapproved');
+
+}
+
+    public function disapprovedList()
+    {
+        $title="Disapproved Purchase Requests";
+        $disapprovedRequests=Userpackage::with('userdata')->where('status','Disapproved')->paginate(10);
+        return view('backend.layouts.purchase.purchaseDisapproved',compact('disapprovedRequests','title'));
+
+    }
+
+    public function approvedList()
+    {
+        $title="Approved Purchase Requests";
+        $approvedRequests=Userpackage::with('userdata')->where('status','Disapproved')->paginate(10);
+        return view('backend.layouts.purchase.purchaseDisapproved',compact('approvedRequests','title'));
+
+    }
 
 
 }

@@ -34,7 +34,7 @@
                 <td>
                     <a class="btn-sm btn-info" style="text-decoration: none" href="{{route('approve.purchase.request',[$package->id,$package->userdata->name])}}">Approve</a>
                     <a class="btn-sm btn--blue" style="text-decoration: none" href="{{route('disapprove.purchase.request',[$package->id])}}">Disapprove</a>
-                      </td>
+                </td>
             </tr>
         @endforeach
         </tbody>

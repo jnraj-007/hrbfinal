@@ -14,7 +14,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     @foreach($categories as $cats)
-                    <a class="dropdown-item" style="background: darkgrey;" href="{{route('posts.under.category',$cats->id)}}">{{$cats->title}}</a>
+                    <a class="dropdown-item" style="background: darkgrey;" href="{{route('posts.under.category',$cats->id)}} @if($cats->id) selected @endif">{{$cats->title}}</a>
                     @endforeach
                 </div>
             </div>

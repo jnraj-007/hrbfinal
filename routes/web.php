@@ -140,7 +140,9 @@ Route::group(['prefix'=>'admin'],function (){
 // purchase request
         Route::get('/view/purchase/requests',[PackageController::class,'purchaseRequest'])->name('purchase.request.list');
         Route::get('/approve/request/{request_id}{name}',[PackageController::class,'approveRequest'])->name('approve.purchase.request');
-//        Route::get('/disapprove/request/{id}{',)
+        Route::get('/disapprove/request/{id}',[PackageController::class,'disapproveRequest'])->name('disapprove.purchase.request');
+        Route::get('/disapproved/list',[PackageController::class,'disapprovedList'])->name('disapproved.lists');
+        Route::get('/approved/list',[PackageController::class,'approvedList'])->name('approved.lists');
 
 
 
