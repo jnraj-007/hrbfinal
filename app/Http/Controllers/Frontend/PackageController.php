@@ -33,17 +33,17 @@ class PackageController extends Controller
         break;
             case 'Disapproved':
                 $packageStatus="Disapproved Purchase";
-                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Disapproved')->orderBy('created_at','DESC')->paginate('6');
+                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Disapproved')->orderBy('updated_at','DESC')->paginate('6');
                 return view('frontend.layouts.user.dashboard.purchaseHistory',compact('user','packageStatus'));
                 break;
             case 'history':
                 $packageStatus="Purchase History";
-                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','expired')->orderBy('created_at','DESC')->paginate('6');
+                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','expired')->orderBy('updated_at','DESC')->paginate('6');
                 return view('frontend.layouts.user.dashboard.purchaseHistory',compact('user','packageStatus'));
                 break;
             case 'Approved':
                 $packageStatus="Approved Purchase";
-                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Approved')->orderBy('created_at','DESC')->paginate('6');
+                $user=Userpackage::where('userId',auth('user')->user()->id)->where('status','Approved')->orderBy('updated_at','DESC')->paginate('6');
                 return view('frontend.layouts.user.dashboard.purchaseHistory',compact('user','packageStatus'));
                 break;
 

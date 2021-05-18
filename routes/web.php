@@ -120,7 +120,7 @@ Route::group(['prefix'=>'admin'],function (){
         Route::get('/category',[CategoryController::class,'viewcategory'])->name('category.view');
         Route::post('/category/create',[CategoryController::class,'createcategory'])->name('category.create');
         Route::get('/category/delete/{id}',[CategoryController::class,'deleteCategory'])->name('delete');
-
+//
 //user manage
         Route::get('/users/view',[UserController::class,'viewuser'])->name('view.user');
         Route::get('/users/form',[UserController::class,'userform'])->name('user.form');
@@ -139,10 +139,13 @@ Route::group(['prefix'=>'admin'],function (){
 
 // purchase request
         Route::get('/view/purchase/requests',[PackageController::class,'purchaseRequest'])->name('purchase.request.list');
+        Route::get('/approved/list',[PackageController::class,'approvedList'])->name('approved.lists');
+        Route::get('/disapproved/list',[PackageController::class,'disapprovedList'])->name('disapproved.lists');
+//      purchase request action
+
         Route::get('/approve/request/{request_id}{name}',[PackageController::class,'approveRequest'])->name('approve.purchase.request');
         Route::get('/disapprove/request/{id}',[PackageController::class,'disapproveRequest'])->name('disapprove.purchase.request');
-        Route::get('/disapproved/list',[PackageController::class,'disapprovedList'])->name('disapproved.lists');
-        Route::get('/approved/list',[PackageController::class,'approvedList'])->name('approved.lists');
+        Route::get('/disapprove/after/approve/{id}',[PackageController::class,'disapproveAfterApprove'])->name('disapprove.after.approve');
 
 
 

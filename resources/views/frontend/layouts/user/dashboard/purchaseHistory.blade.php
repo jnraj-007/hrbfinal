@@ -45,7 +45,7 @@
                     <td>{{$data->current_package_status}}</td>
                     <td> {{$data->status}}</td>
                     <td>
-                        @if($data->status=='Approved'||$data->current_package_status=='expired')
+                        @if($data->status=='Approved'||$data->status=='Disapproved'||$data->current_package_status=='expired')
                             <p style="background-color: red; display: inline-block">no action</p>@else
                             <a class="btn btn-info" href="{{route('cancel.post.interest',$data->id)}}">Cancel</a>
                         @endif

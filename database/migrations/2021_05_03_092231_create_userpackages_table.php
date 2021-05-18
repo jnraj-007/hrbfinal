@@ -23,7 +23,7 @@ class CreateUserpackagesTable extends Migration
             $table->string('transactionId');
             $table->string('current_package_status')->default('Inactive');
             $table->integer('amountToPay');
-            $table->string('status')->default('Pending');
+            $table->string('status')->default('pending');
             $table->integer('usedPost')->default(0);
             $table->timestamps();
         });

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Interest;
+use App\Mail\Registration;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Userpackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 
 
 class UserController extends Controller
@@ -29,11 +31,13 @@ class UserController extends Controller
             'email'=>'required|email|unique:users',
 
         ]);
-        User::create([
+        $registration=User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>bcrypt($request->password)
         ]);
+
+        Mail::to($request->email)->send(new Registration($registration));
         return redirect()->route('frontend.user.reg')->with('success','Registration is successful');
     }
 

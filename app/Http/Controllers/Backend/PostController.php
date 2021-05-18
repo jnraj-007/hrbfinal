@@ -11,7 +11,7 @@ class PostController extends Controller
 {
 public function viewpost(){
     $title=" Post List";
-    $posts= Post::all();
+    $posts= Post::with('userDetails','categoryName')->where('status','Active')->orderBy('created_at','Desc')->paginate(8);
     return view('backend.layouts.post.postList',compact('posts','title'));
 
 }

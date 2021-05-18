@@ -2,7 +2,11 @@
 @section('page')
 
 
-
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
     <table class="table  table-bordered table-hover  ">
         <thead>
 
@@ -14,29 +18,32 @@
         <th>Package Price</th>
         <th>Amount Paid</th>
         <th>Transaction ID</th>
-        <th>Request Date</th>
+        <th>Requested at</th>
+        <th>Approved at</th>
         <th>status</th>
         <th>Action</th>
         </thead>
         <tbody>
-        @foreach($purchaseRequest as $key=> $package)
+        @foreach($approvedRequests as  $purchase)
             <tr>
-                <th scope="row"> {{$package->id}}</th>
-                <td> {{$package->userId}}</td>
-                <td>{{$package->userdata->name}} </td>
-                <td>{{$package->package_id}} </td>
-                <td> {{$package->packageName}}</td>
-                <td> {{$package->package_price}}</td>
-                <td> {{$package->amountToPay}}</td>
-                <td> {{$package->transactionId}}</td>
-                <td> {{$package->created_at}}</td>
-                <td>{{$package->status}} </td>
-                <td>
-                    <a class="btn-sm btn-info" style="text-decoration: none" href="{{route('approve.purchase.request',[$package->id,$package->userdata->name])}}">Approve</a>
-                    <a class="btn-sm btn--blue" style="text-decoration: none" href="{{route('disapprove.purchase.request',[$package->id])}}">Disapprove</a>
-                </td>
+                <th scope="row"> {{$purchase->id}}</th>
+                <td> {{$purchase->userId}}</td>
+                <td>{{$purchase->userdata->name}} </td>
+                <td>{{$purchase->package_id}} </td>
+                <td> {{$purchase->packageName}}</td>
+                <td> {{$purchase->package_price}}</td>
+                <td> {{$purchase->amountToPay}}</td>
+                <td> {{$purchase->transactionId}}</td>
+                <td> {{$purchase->created_at}}</td>
+                <td> {{$purchase->updated_at}}</td>
+                <td>{{$purchase->status}} </td>
+                <td>@if($purchase->status=='expired')
+                        no action @else
+                    <a class="btn-sm btn--blue" style="text-decoration: none" href="{{route('disapprove.after.approve',[$purchase->id])}}">Disapprove</a>
+               @endif </td>
             </tr>
         @endforeach
         </tbody>
     </table>
+    {{$approvedRequests->links()}}
 @endsection

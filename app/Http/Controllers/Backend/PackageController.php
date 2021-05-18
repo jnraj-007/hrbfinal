@@ -36,7 +36,7 @@ class PackageController extends Controller
 
     public function purchaseRequest()
     {    $title="Purchase Request";
-        $purchaseRequest=Userpackage::with('userdata')->where('status','pending')->paginate(10);
+        $purchaseRequest=Userpackage::with('userdata')->where('status','pending')->orderBy('created_at','desc')->paginate(10);
         return view('backend.layouts.purchase.purchaserequest',compact('purchaseRequest','title'));
     }
 
@@ -75,6 +75,19 @@ class PackageController extends Controller
 
 }
 
+    public function disapproveAfterApprove($id)
+    {
+        $disapprove=Userpackage::find($id);
+        $disapprove->update([
+            'status'=>'Disapproved',
+            'current_package_status'=>'Inactive'
+        ]);
+        $payment=Payment::where('purchaseId',$id);
+       $payment->delete();
+       return redirect()->back()->with('success','Request Disapproved Successfully!!!');
+
+}
+
     public function disapprovedList()
     {
         $title="Disapproved Purchase Requests";
@@ -86,8 +99,8 @@ class PackageController extends Controller
     public function approvedList()
     {
         $title="Approved Purchase Requests";
-        $approvedRequests=Userpackage::with('userdata')->where('status','Disapproved')->paginate(10);
-        return view('backend.layouts.purchase.purchaseDisapproved',compact('approvedRequests','title'));
+        $approvedRequests=Userpackage::with('userdata')->where('status','Approved')->orWhere('status','expired')->orderBy('updated_at','desc')->paginate(10);
+        return view('backend.layouts.purchase.approved',compact('approvedRequests','title'));
 
     }
 

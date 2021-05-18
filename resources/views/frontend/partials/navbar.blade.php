@@ -10,12 +10,12 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="{{route('home.view')}}" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="{{route('frontend.post.view')}}" class="nav-link">Property</a></li>
-                <li class="nav-item"><a href="{{asset('frontend')}}/master/agents.html" class="nav-link">Agents</a></li>
-                <li class="nav-item"><a href="{{asset('frontend')}}/master/about.html" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="{{asset('frontend')}}/master/blog.html" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="{{asset('frontend')}}/master/contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item  "><a href="{{route('home.view')}}" class="nav-link">Home</a></li>
+                <li class="nav-item "><a href="{{route('frontend.post.view')}}" class="nav-link">Property</a></li>
+                <li class="nav-item "><a href="{{asset('frontend')}}/master/agents.html" class="nav-link">Agents</a></li>
+                <li class="nav-item "><a href="{{asset('frontend')}}/master/about.html" class="nav-link">About</a></li>
+                <li class="nav-item "><a href="{{asset('frontend')}}/master/blog.html" class="nav-link">Blog</a></li>
+                <li class="nav-item "><a href="{{asset('frontend')}}/master/contact.html" class="nav-link">Contact</a></li>
                 @auth('user')
                     <li class="nav-item cta"><a href="{{route('user.dashboard')}}" class="nav-link"><span class="icon-dashboard"></span>Dashboard</a></li>
                     <br><br>

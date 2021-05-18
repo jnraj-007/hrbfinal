@@ -15,7 +15,7 @@
         <li><a href="#exampledropdownDropdow" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Purchase </a>
             <ul id="exampledropdownDropdow" class="collapse list-unstyled ">
                 <li><a href="{{route('purchase.request.list')}}">Purchase Request</a></li>
-                <li><a href="#">Purchase Approved</a></li>
+                <li><a href="{{route('approved.lists')}}">Purchase Approved</a></li>
                 <li><a href="{{route('disapproved.lists')}}">Purchase Disapproved</a></li>
             </ul>
         </li>

@@ -12,6 +12,8 @@ class Post extends Model
 
     public function categoryName()
     {return $this->belongsTo(Category::class,'categoryId','id');
+    }public function userDetails()
+    {return $this->belongsTo(User::class,'authorId','id');
     }
 
 
